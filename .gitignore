@@ -1,0 +1,7 @@
+/.idea
+.DS_Store
+composer.lock
+/bin
+/vendor
+/.vagrant
+ubuntu-xenial-16.04-cloudimg-console.log

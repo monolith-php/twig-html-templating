@@ -1,0 +1,2 @@
+# Twig HTML Templating $$VERSION$$
+

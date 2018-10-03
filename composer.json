@@ -1,0 +1,42 @@
+{
+  "name": "monolith/twig-html-templating",
+  "description": "Twig HTML templating component for the Monolith framework.",
+  "keywords": [
+    "monolith",
+    "twig",
+    "html",
+    "templating"
+  ],
+  "authors": [
+    {
+      "name": "Shawn McCool",
+      "email": "shawn@heybigname.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "monolith/component-bootstrapping": "^4",
+    "monolith/dependency-injection": "^5"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Monolith\\Twig\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\Monolith\\Twig\\": "spec/"
+    },
+    "files": [
+      "spec/functions.php"
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "bin-dir": "bin"
+  },
+  "minimum-stability": "dev"
+}
