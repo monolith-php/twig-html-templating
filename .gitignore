@@ -5,3 +5,4 @@ composer.lock
 /vendor
 /.vagrant
 ubuntu-xenial-16.04-cloudimg-console.log
+/spec/cache_tmp/*

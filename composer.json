@@ -16,7 +16,9 @@
   "require": {
     "php": "^7.1",
     "monolith/component-bootstrapping": "^4",
-    "monolith/dependency-injection": "^5"
+    "monolith/dependency-injection": "^5",
+    "monolith/configuration": "^2",
+    "twig/twig": "^2.0"
   },
   "require-dev": {
     "phpspec/phpspec": "^5.0"
