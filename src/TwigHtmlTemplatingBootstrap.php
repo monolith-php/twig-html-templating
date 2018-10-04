@@ -17,7 +17,18 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
     public function bind(Container $container): void
     {
         $container->bind(\Twig_Environment::class, function ($r) {
-            $loader = new Twig_Loader_Filesystem(getenv('TWIG_TEMPLATE_PATHS'));
+
+            $templatePaths = getenv('TWIG_TEMPLATE_PATHS');
+
+            if (is_array($templatePaths)) {
+                $templatePaths = array_map(function($path) {
+                    return $this->rootPath . $path;
+                }, $templatePaths);
+            } else {
+                $templatePaths = $this->rootPath . $templatePaths;
+            }
+
+            $loader = new Twig_Loader_Filesystem($templatePaths);
 
             return new Twig_Environment($loader, [
                 'cache' => getenv('TWIG_CACHE_PATH'),
