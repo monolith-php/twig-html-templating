@@ -15,7 +15,7 @@ class TwigSpec extends ObjectBehavior
         $loader = new ComponentLoader($container);
         $loader->register(
             new ConfigurationBootstrap('spec/'),
-            new TwigHtmlTemplatingBootstrap
+            new TwigHtmlTemplatingBootstrap('.')
         );
         $loader->load();
         return $container;

@@ -7,6 +7,13 @@ use Twig_Loader_Filesystem;
 
 final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 {
+    private $rootPath;
+
+    public function __construct($rootPath)
+    {
+        $this->rootPath = realpath($rootPath) . '/';
+    }
+
     public function bind(Container $container): void
     {
         $container->bind(\Twig_Environment::class, function ($r) {
