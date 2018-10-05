@@ -32,6 +32,7 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 
             return new Twig_Environment($loader, [
                 'cache' => getenv('TWIG_CACHE_PATH'),
+                'auto_reload' => strtolower(getenv('TWIG_AUTO_RELOAD')) == 'true'
             ]);
         });
 
