@@ -18,6 +18,7 @@
     "monolith/component-bootstrapping": "^4",
     "monolith/dependency-injection": "^5",
     "monolith/configuration": "^2",
+    "monolith/collections": "^3",
     "twig/twig": "^2.0"
   },
   "require-dev": {

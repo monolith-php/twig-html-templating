@@ -1,5 +1,6 @@
 <?php namespace Monolith\Twig;
 
+use Monolith\Collections\MutableCollection;
 use Monolith\ComponentBootstrapping\ComponentBootstrap;
 use Monolith\DependencyInjection\Container;
 use Twig_Environment;
@@ -16,23 +17,30 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 
     public function bind(Container $container): void
     {
-        $container->bind(\Twig_Environment::class, function ($r) {
+        $container->singleton(TwigTemplatePaths::class, function ($r) {
+            $paths = getenv('TWIG_TEMPLATE_PATHS');
 
-            $templatePaths = getenv('TWIG_TEMPLATE_PATHS');
-
-            if (is_array($templatePaths)) {
-                $templatePaths = array_map(function($path) {
-                    return $this->rootPath . $path;
-                }, $templatePaths);
-            } else {
-                $templatePaths = $this->rootPath . $templatePaths;
+            if ( ! is_array($paths)) {
+                $paths = [$paths];
             }
 
-            $loader = new Twig_Loader_Filesystem($templatePaths);
+            return new TwigTemplatePaths($paths);
+        });
+
+        $container->bind(\Twig_Environment::class, function ($r) {
+
+            /** @var MutableCollection $templatePaths */
+            $templatePaths = $r(TwigTemplatePaths::class);
+
+            $fullyQualifiedTemplatePaths = $templatePaths->map(function($path) {
+                return $this->rootPath . $path;
+            });
+
+            $loader = new Twig_Loader_Filesystem($fullyQualifiedTemplatePaths->toArray());
 
             return new Twig_Environment($loader, [
-                'cache' => getenv('TWIG_CACHE_PATH'),
-                'auto_reload' => strtolower(getenv('TWIG_AUTO_RELOAD')) == 'true'
+                'cache'       => getenv('TWIG_CACHE_PATH'),
+                'auto_reload' => strtolower(getenv('TWIG_AUTO_RELOAD')) == 'true',
             ]);
         });
 
