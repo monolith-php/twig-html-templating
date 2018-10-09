@@ -1,5 +1,6 @@
 <?php namespace Monolith\Twig;
 
+use Monolith\WebForms\FormModel;
 use Twig\Environment;
 
 final class Twig
@@ -18,7 +19,7 @@ final class Twig
         return $template->render($variables);
     }
 
-    public function renderForm($form, $template, array $variables = []): string
+    public function renderForm(FormModel $form, $template, array $variables = []): string
     {
         $this->twig->addGlobal('form_model', $form);
         $template = $this->twig->load($template);

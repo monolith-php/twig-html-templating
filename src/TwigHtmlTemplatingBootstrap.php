@@ -24,7 +24,15 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
                 $paths = [$paths];
             }
 
-            return new TwigTemplatePaths($paths);
+            $fullyQualifiedTemplatePaths = array_map(function($path) {
+                return $this->rootPath . $path;
+            }, $paths);
+
+            $templatePaths = new TwigTemplatePaths($fullyQualifiedTemplatePaths);
+
+            $templatePaths->add(realpath('../templates'));
+
+            return $templatePaths;
         });
 
         $container->bind(\Twig_Environment::class, function ($r) {
@@ -32,11 +40,7 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
             /** @var MutableCollection $templatePaths */
             $templatePaths = $r(TwigTemplatePaths::class);
 
-            $fullyQualifiedTemplatePaths = $templatePaths->map(function($path) {
-                return $this->rootPath . $path;
-            });
-
-            $loader = new Twig_Loader_Filesystem($fullyQualifiedTemplatePaths->toArray());
+            $loader = new Twig_Loader_Filesystem($templatePaths->toArray());
 
             return new Twig_Environment($loader, [
                 'cache'       => getenv('TWIG_CACHE_PATH'),
