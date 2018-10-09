@@ -30,7 +30,7 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 
             $templatePaths = new TwigTemplatePaths($fullyQualifiedTemplatePaths);
 
-            $templatePaths->add(realpath('../templates'));
+            $templatePaths->add(__DIR__ . '/../templates');
 
             return $templatePaths;
         });
