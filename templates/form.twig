@@ -2,8 +2,8 @@
 {{ form_model.open | raw }}
 {% endmacro %}
 
-{% macro field(name) %}
-{{ attribute(form_model, name) | raw }}
+{% macro field(name, attributes) %}
+{{ attribute(form_model, name, [attributes]) | raw }}
 {% endmacro %}
 
 {% macro submit(button_text) %}
