@@ -2,7 +2,4 @@
 
 use Monolith\Collections\MutableCollection;
 
-final class TwigTemplatePaths extends MutableCollection
-{
-
-}
+final class TwigTemplatePaths extends MutableCollection {}

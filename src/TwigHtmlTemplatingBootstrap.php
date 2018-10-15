@@ -24,7 +24,7 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
                 $paths = [$paths];
             }
 
-            $fullyQualifiedTemplatePaths = array_map(function($path) {
+            $fullyQualifiedTemplatePaths = array_map(function ($path) {
                 return $this->rootPath . $path;
             }, $paths);
 
@@ -36,7 +36,6 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
         });
 
         $container->bind(\Twig_Environment::class, function ($r) {
-
             /** @var MutableCollection $templatePaths */
             $templatePaths = $r(TwigTemplatePaths::class);
 
@@ -46,10 +45,6 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
                 'cache'       => getenv('TWIG_CACHE_PATH'),
                 'auto_reload' => strtolower(getenv('TWIG_AUTO_RELOAD')) == 'true',
             ]);
-        });
-
-        $container->bind(Twig::class, function ($r) {
-            return new Twig($r(\Twig_Environment::class));
         });
     }
 
