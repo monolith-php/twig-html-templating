@@ -31,7 +31,7 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
             return new TwigTemplatePaths($fullyQualifiedTemplatePaths);
         });
 
-        $container->bind(\Twig_Environment::class, function ($r) {
+        $container->singleton(\Twig_Environment::class, function ($r) {
             /** @var MutableCollection $templatePaths */
             $templatePaths = $r(TwigTemplatePaths::class);
 
