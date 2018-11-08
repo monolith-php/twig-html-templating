@@ -31,16 +31,18 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
             return new TwigTemplatePaths($fullyQualifiedTemplatePaths);
         });
 
-        $container->singleton(\Twig_Environment::class, function ($r) {
+        $container->singleton(Twig::class, function ($r) {
             /** @var MutableCollection $templatePaths */
             $templatePaths = $r(TwigTemplatePaths::class);
 
             $loader = new Twig_Loader_Filesystem($templatePaths->toArray());
 
-            return new Twig_Environment($loader, [
+            $environment = new Twig_Environment($loader, [
                 'cache'       => getenv('TWIG_CACHE_PATH'),
                 'auto_reload' => strtolower(getenv('TWIG_AUTO_RELOAD')) == 'true',
             ]);
+
+            return new Twig($environment);
         });
     }
 
