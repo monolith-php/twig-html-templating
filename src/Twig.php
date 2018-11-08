@@ -24,7 +24,7 @@ final class Twig
 
     public function renderForm($formModel, array $arguments = [])
     {
-        $this->twig->addGlobal('form_model', $formModel);
+        $this->environment->addGlobal('form_model', $formModel);
         return $this->render($formModel->twigTemplatePath(), $arguments);
     }
 }
