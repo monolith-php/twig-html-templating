@@ -20,13 +20,15 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
         $container->singleton(TwigTemplatePaths::class, function ($r) {
             $paths = getenv('TWIG_TEMPLATE_PATHS');
 
-            if ( ! is_array($paths)) {
-                $paths = [$paths];
+            if (stristr($paths, ':')) {
+                $pathArray = explode(':', $paths);
+            } else {
+                $pathArray = [$paths];
             }
 
             $fullyQualifiedTemplatePaths = array_map(function ($path) {
                 return $this->rootPath . $path;
-            }, $paths);
+            }, $pathArray);
 
             return new TwigTemplatePaths($fullyQualifiedTemplatePaths);
         });
