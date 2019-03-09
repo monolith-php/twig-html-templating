@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "php": "^7.1",
+    "php": "^7.2",
     "monolith/component-bootstrapping": "^4",
     "monolith/dependency-injection": "^5",
     "monolith/configuration": "^2",
