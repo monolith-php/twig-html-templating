@@ -19,7 +19,6 @@
     "monolith/dependency-injection": "^6",
     "monolith/configuration": "^3",
     "monolith/collections": "^5",
-    "monolith/web-forms": "^0",
     "twig/twig": "^2"
   },
   "require-dev": {
