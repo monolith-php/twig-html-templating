@@ -17,10 +17,10 @@
     "php": "^7.2",
     "monolith/component-bootstrapping": "^5",
     "monolith/dependency-injection": "^6",
-    "monolith/configuration": "^2",
+    "monolith/configuration": "^3",
     "monolith/collections": "^5",
     "monolith/web-forms": "^0",
-    "twig/twig": "^2.0"
+    "twig/twig": "^2"
   },
   "require-dev": {
     "phpspec/phpspec": "^5.0"
