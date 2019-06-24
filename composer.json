@@ -15,10 +15,10 @@
   ],
   "require": {
     "php": "^7.2",
-    "monolith/component-bootstrapping": "^5",
-    "monolith/dependency-injection": "^6",
-    "monolith/configuration": "^3",
-    "monolith/collections": "^5",
+    "monolith/component-bootstrapping": ">=5",
+    "monolith/dependency-injection": ">=6",
+    "monolith/configuration": ">=3",
+    "monolith/collections": ">=5",
     "twig/twig": "^2"
   },
   "require-dev": {
