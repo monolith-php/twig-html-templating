@@ -1,5 +1,6 @@
 <?php namespace Monolith\Twig;
 
+use Monolith\Configuration\Config;
 use Monolith\Collections\MutableCollection;
 use Monolith\ComponentBootstrapping\ComponentBootstrap;
 use Monolith\DependencyInjection\Container;
@@ -10,6 +11,9 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 {
     private $rootPath;
 
+    /** @var Config */
+    private $config;
+
     public function __construct($rootPath)
     {
         $this->rootPath = realpath($rootPath) . '/';
@@ -17,8 +21,10 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 
     public function bind(Container $container): void
     {
+        $this->config = $container(Config::class);
+
         $container->singleton(TwigTemplatePaths::class, function ($r) {
-            $paths = getenv('TWIG_TEMPLATE_PATHS');
+            $paths = $this->config->get('TWIG_TEMPLATE_PATHS');
 
             if (stristr($paths, ':')) {
                 $pathArray = explode(':', $paths);
@@ -40,8 +46,8 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
             $loader = new Twig_Loader_Filesystem($templatePaths->toArray());
 
             $environment = new Twig_Environment($loader, [
-                'cache'       => getenv('TWIG_CACHE_PATH'),
-                'auto_reload' => strtolower(getenv('TWIG_AUTO_RELOAD')) == 'true',
+                'cache'       => $this->config->get('TWIG_CACHE_PATH'),
+                'auto_reload' => strtolower($this->config->get('TWIG_AUTO_RELOAD')) == 'true',
             ]);
 
             return new Twig($environment);
