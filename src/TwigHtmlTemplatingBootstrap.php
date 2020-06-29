@@ -21,10 +21,11 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 
     public function bind(Container $container): void
     {
-        $this->config = $container(Config::class);
-
         $container->singleton(TwigTemplatePaths::class, function ($r) {
-            $paths = $this->config->get('TWIG_TEMPLATE_PATHS');
+            /** @var Config $config */
+            $config = $r(Config::class);
+            
+            $paths = $config->get('TWIG_TEMPLATE_PATHS');
 
             if (stristr($paths, ':')) {
                 $pathArray = explode(':', $paths);
@@ -40,14 +41,17 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
         });
 
         $container->singleton(Twig::class, function ($r) {
+                        /** @var Config $config */
+            $config = $r(Config::class);
+            
             /** @var MutableCollection $templatePaths */
             $templatePaths = $r(TwigTemplatePaths::class);
 
             $loader = new Twig_Loader_Filesystem($templatePaths->toArray());
 
             $environment = new Twig_Environment($loader, [
-                'cache'       => $this->config->get('TWIG_CACHE_PATH'),
-                'auto_reload' => strtolower($this->config->get('TWIG_AUTO_RELOAD')) == 'true',
+                'cache'       => $config->get('TWIG_CACHE_PATH'),
+                'auto_reload' => strtolower($config->get('TWIG_AUTO_RELOAD')) == 'true',
             ]);
 
             return new Twig($environment);
