@@ -11,9 +11,6 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
 {
     private $rootPath;
 
-    /** @var Config */
-    private $config;
-
     public function __construct($rootPath)
     {
         $this->rootPath = realpath($rootPath) . '/';
@@ -41,7 +38,7 @@ final class TwigHtmlTemplatingBootstrap implements ComponentBootstrap
         });
 
         $container->singleton(Twig::class, function ($r) {
-                        /** @var Config $config */
+            /** @var Config $config */
             $config = $r(Config::class);
             
             /** @var MutableCollection $templatePaths */
