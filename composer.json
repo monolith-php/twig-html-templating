@@ -7,14 +7,8 @@
     "html",
     "templating"
   ],
-  "authors": [
-    {
-      "name": "Shawn McCool",
-      "email": "shawn@heybigname.com"
-    }
-  ],
   "require": {
-    "php": "^7.4",
+    "php": ">=7.4",
     "monolith/component-bootstrapping": ">=5",
     "monolith/dependency-injection": ">=6",
     "monolith/configuration": ">=3",
