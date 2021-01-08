@@ -16,7 +16,7 @@
     "twig/twig": "^2"
   },
   "require-dev": {
-    "phpspec/phpspec": "dev-master"
+    "phpspec/phpspec": "^7"
   },
   "autoload": {
     "psr-4": {
