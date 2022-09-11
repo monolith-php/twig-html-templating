@@ -8,26 +8,16 @@
     "templating"
   ],
   "require": {
-    "php": ">=8",
-    "monolith/component-bootstrapping": "^8",
-    "monolith/dependency-injection": "^9",
-    "monolith/configuration": "^7",
-    "monolith/collections": "^9",
+    "php": ">=8.1",
+    "monolith/component-bootstrapping": "^9",
+    "monolith/dependency-injection": "^10",
+    "monolith/configuration": "^8",
+    "monolith/collections": "^10",
     "twig/twig": "^2"
   },
   "require-dev": {
     "phpspec/phpspec": "^7"
   },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://packages.humanmusic.eu",
-      "canonical": false,
-      "only": [
-        "monolith/*"
-      ]
-    }
-  ],
   "autoload": {
     "psr-4": {
       "Monolith\\Twig\\": "src/"
